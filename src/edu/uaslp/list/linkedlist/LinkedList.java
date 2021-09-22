@@ -25,10 +25,19 @@ public class LinkedList {
     }
 
     public void insert(int data, int index){
-        Node newNode= new Node();
         Node it=head;
         int counter=0;
 
+        if(index<0 || index>=size){
+            return;
+        }
+
+        if(index==size){//(index==0 && size==0)
+            add(data);
+            return;
+        }
+
+        Node newNode= new Node();
         newNode.data=data;
 
         while(counter<index && it!=null){
@@ -36,9 +45,15 @@ public class LinkedList {
             it=it.next;
         }
 
-        it.previous.next=newNode;
         newNode.previous=it.previous;
         newNode.next=it;
+
+        if(it.previous==null){
+            head=newNode;
+        }else{
+            it.previous.next=newNode;
+        }
+
         it.previous=newNode;
 
         size++;
@@ -48,13 +63,27 @@ public class LinkedList {
         int counter=0;
         Node it=head;
 
+        if(index<0 || index>=size){
+            return;
+        }
+
         while(counter<index && it!=null){
             counter++;
             it=it.next;
         }
-        it.previous.next=it.next;
-        it.next.previous=it.previous;
-        it=null;
+        if (it != null) {
+            if(it.previous==null){
+                head=it.next;
+            }else{
+                it.previous.next=it.next;
+            }
+
+            if(it.next==null){
+                tail=it.previous;
+            }else{
+                it.next.previous=it.previous;
+            }
+        }
         size--;
     }
 
