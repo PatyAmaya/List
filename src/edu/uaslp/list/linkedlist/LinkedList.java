@@ -1,11 +1,11 @@
 package edu.uaslp.list.linkedlist;
 
-public class LinkedList {
-    private Node head;
-    private Node tail;
+public class LinkedList <H>{
+    private Node<H> head;
+    private Node<H> tail;
     private int size;
 
-    public void add(int data){
+    public void add(H data){
         Node node = new Node();
 
         node.data = data;
@@ -24,7 +24,7 @@ public class LinkedList {
         size++;
     }
 
-    public void insert(int data, int index){
+    public void insert(H data, int index){
         Node it=head;
         int counter=0;
 
@@ -91,7 +91,7 @@ public class LinkedList {
         return size;
     }
 
-    public int getAt(int index){
+    public Object getAt(int index){
         int counter=0;
         Node it=head;
 
@@ -102,12 +102,12 @@ public class LinkedList {
         return it==null ? 0 : it.data;
     }
 
-    public void printList(){
+    public void print(){
         int counter=0;
         Node it=head;
 
         while(counter<size && it!=null){
-            System.out.println("Posicion "+counter+": "+it.data);
+            System.out.println(it.data);
             counter++;
             it=it.next;
         }

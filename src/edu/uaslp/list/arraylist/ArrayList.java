@@ -1,12 +1,78 @@
 package edu.uaslp.list.arraylist;
 
-public class ArrayList {
-    private int size=10;
-    private int last=0;
-    private int arrCounter=1;
-    private int arr[]=new int[size*arrCounter];
+public class ArrayList <T> {
 
-    public void add(int data){
+    private static final int INITIAL_SIZE=50;
+
+    private Object[] array;
+    private int nextValid;
+
+    public ArrayList(){
+        array= new Object[INITIAL_SIZE];
+    }
+
+    public void add(T data){
+
+        if(nextValid >= array.length){
+            increaseArrayCapacity();
+        }
+
+        array[nextValid]=data;
+        nextValid++;
+    }
+
+    private void increaseArrayCapacity() {
+        Object []newArray = new Object[array.length*2];
+
+        System.arraycopy(array, 0, newArray, 0, array.length);
+
+        array=newArray;
+    }
+
+    public void delete(int index){
+        if(index<0 || index>=nextValid){
+            return;
+        }
+        if (nextValid - 1 - index >= 0){
+            System.arraycopy(array, index + 1, array, index, nextValid - 1 - index);
+        }
+        nextValid--;
+    }
+
+    public void insert(int index, T data){
+        if(index<0 || index>=nextValid){
+            return;
+        }
+
+        if(nextValid>= array.length){
+            increaseArrayCapacity();
+        }
+
+        for(int i=nextValid;i>index;i--){
+            array[i]=array[i-1];
+        }
+        array[index]=data;
+    }
+
+    public int getSize(){
+        return nextValid;
+    }
+
+    public T getAt(int index){
+        if(index<0 || index>=nextValid){
+            return null;
+        }
+        return (T)array[index];
+    }
+
+    public void print(){
+        for(int i=0;i<nextValid;i++){
+            System.out.println(array[i]);
+        }
+    }
+
+/*
+    public void add(T data){
         int i;
 
         if(last==size){
@@ -58,5 +124,5 @@ public class ArrayList {
 
     public int getArrCounter() {
         return arrCounter;
-    }
+    }*/
 }
