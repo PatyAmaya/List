@@ -1,6 +1,9 @@
 package edu.uaslp.list.arraylist;
 
-public class ArrayList <T> {
+import edu.uaslp.list.Iterator;
+import edu.uaslp.list.List;
+
+public class ArrayList <T> implements List <T> {
 
     private static final int INITIAL_SIZE=50;
 
@@ -52,6 +55,7 @@ public class ArrayList <T> {
             array[i]=array[i-1];
         }
         array[index]=data;
+        nextValid++;
     }
 
     public int getSize(){
@@ -69,6 +73,11 @@ public class ArrayList <T> {
         for(int i=0;i<nextValid;i++){
             System.out.println(array[i]);
         }
+    }
+
+    @Override
+    public Iterator<T> getIterator() {
+        return new ArrayListIterator<>(this);
     }
 
 /*

@@ -1,16 +1,18 @@
 package edu.uaslp;
 
-import edu.uaslp.list.arraylist.ArrayList;
+import edu.uaslp.list.Iterator;
+import edu.uaslp.list.List;
 import edu.uaslp.list.linkedlist.LinkedList;
+import edu.uaslp.list.arraylist.ArrayList;
 
 public class Main {
     public static void main(String[] args){
 
-        LinkedList libros = new LinkedList();
-        LinkedList alumnos = new LinkedList();
+        List<Integer> libros = new LinkedList<>();
+        List<Integer> alumnos = new LinkedList<>();
 
         libros.add(1);
-        libros.add("CINCO");
+        libros.add(3);
         libros.add(20);
         libros.add(21);
         libros.add(23);
@@ -21,16 +23,30 @@ public class Main {
 
         libros.delete(3);
 
-        alumnos.add(22);
-        alumnos.add(5);
-
         System.out.println("Libros size: "+libros.getSize());
+
+        System.out.println("Datos de la iteración");
+
+        Iterator<Integer> it= libros.getIterator();
+
+        while (it.hasNext()){
+            int dato=it.next();
+
+            System.out.println(dato);
+        }
+
+        /*
+
         System.out.println("Alumnos size: "+alumnos.getSize());
 
         System.out.println("Lista de libros");
         libros.print();
 
+        System.out.println("Lista de Alumnos");
+        alumnos.print();
 
+        alumnos.add(22);
+        alumnos.add(5);
+        alumnos.insert(1,3000);*/
     }
-
 }

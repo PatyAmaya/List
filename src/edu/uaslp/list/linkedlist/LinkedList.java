@@ -1,12 +1,19 @@
 package edu.uaslp.list.linkedlist;
 
-public class LinkedList <H>{
+import edu.uaslp.list.Iterator;
+import edu.uaslp.list.List;
+
+public class LinkedList <H> implements List <H>{
     private Node<H> head;
     private Node<H> tail;
     private int size;
 
+    //INNER CLASSES -> Clases anidadas
+
+
+
     public void add(H data){
-        Node node = new Node();
+        Node<H> node = new Node<>();
 
         node.data = data;
 
@@ -24,8 +31,8 @@ public class LinkedList <H>{
         size++;
     }
 
-    public void insert(H data, int index){
-        Node it=head;
+    public void insert(int index, H data){
+        Node<H> it=head;
         int counter=0;
 
         if(index<0 || index>=size){
@@ -37,7 +44,7 @@ public class LinkedList <H>{
             return;
         }
 
-        Node newNode= new Node();
+        Node<H> newNode= new Node();
         newNode.data=data;
 
         while(counter<index && it!=null){
@@ -91,15 +98,19 @@ public class LinkedList <H>{
         return size;
     }
 
-    public Object getAt(int index){
+    public H getAt(int index){
         int counter=0;
-        Node it=head;
+        Node<H> it=head;
 
         while(counter<index && it!=null){
             counter++;
             it=it.next;
         }
-        return it==null ? 0 : it.data;
+        return it==null ? null : it.data;
+    }
+
+    public Iterator<H> getIterator(){
+        return new LinkedListIterator<>(head);
     }
 
     public void print(){
@@ -113,4 +124,5 @@ public class LinkedList <H>{
         }
         System.out.println("");
     }
+
 }
