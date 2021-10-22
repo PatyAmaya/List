@@ -6,10 +6,9 @@ import edu.uaslp.list.List;
 public class LinkedList <H> implements List <H>{
     private Node<H> head;
     private Node<H> tail;
-    private int size;
+    private int size=0;
 
     //INNER CLASSES -> Clases anidadas
-
 
 
     public void add(H data){
@@ -111,18 +110,6 @@ public class LinkedList <H> implements List <H>{
 
     public Iterator<H> getIterator(){
         return new LinkedListIterator<>(head);
-    }
-
-    public void print(){
-        int counter=0;
-        Node it=head;
-
-        while(counter<size && it!=null){
-            System.out.println(it.data);
-            counter++;
-            it=it.next;
-        }
-        System.out.println("");
     }
 
 }

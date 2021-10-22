@@ -69,12 +69,6 @@ public class ArrayList <T> implements List <T> {
         return (T)array[index];
     }
 
-    public void print(){
-        for(int i=0;i<nextValid;i++){
-            System.out.println(array[i]);
-        }
-    }
-
     @Override
     public Iterator<T> getIterator() {
         return new ArrayListIterator<>(this);

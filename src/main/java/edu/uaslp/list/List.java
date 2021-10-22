@@ -12,7 +12,5 @@ public interface List <T>{
 
     void delete(int index);
 
-    void print();
-
     Iterator<T> getIterator();
 }

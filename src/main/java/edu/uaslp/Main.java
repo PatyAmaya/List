@@ -35,18 +35,5 @@ public class Main {
             System.out.println(dato);
         }
 
-        /*
-
-        System.out.println("Alumnos size: "+alumnos.getSize());
-
-        System.out.println("Lista de libros");
-        libros.print();
-
-        System.out.println("Lista de Alumnos");
-        alumnos.print();
-
-        alumnos.add(22);
-        alumnos.add(5);
-        alumnos.insert(1,3000);*/
     }
 }
