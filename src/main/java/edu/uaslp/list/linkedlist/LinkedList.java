@@ -34,7 +34,7 @@ public class LinkedList <H> implements List <H>{
         Node<H> it=head;
         int counter=0;
 
-        if(index<0 || index>=size){
+        if(index<0 || index>size){
             return;
         }
 
@@ -112,4 +112,27 @@ public class LinkedList <H> implements List <H>{
         return new LinkedListIterator<>(head);
     }
 
+    public class ReverseIterator implements Iterator<H>{
+        private Node<H> currentNode;
+
+        ReverseIterator(){
+            currentNode=tail;
+        }
+
+        public H next() {
+            H data = currentNode.data;
+            currentNode=currentNode.previous;
+            return data;
+
+        }
+
+        @Override
+        public boolean hasNext(){
+            return currentNode != null;
+        }
+    }
+
+    public Iterator<H> getReverseIterator(){
+        return new ReverseIterator();
+    }
 }
