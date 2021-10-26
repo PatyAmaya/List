@@ -8,9 +8,6 @@ public class LinkedList <H> implements List <H>{
     private Node<H> tail;
     private int size=0;
 
-    //INNER CLASSES -> Clases anidadas
-
-
     public void add(H data){
         Node<H> node = new Node<>();
 
