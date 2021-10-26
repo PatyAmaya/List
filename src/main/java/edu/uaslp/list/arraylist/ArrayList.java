@@ -5,7 +5,7 @@ import edu.uaslp.list.List;
 
 public class ArrayList <T> implements List <T> {
 
-    private static final int INITIAL_SIZE=50;
+    private static final int INITIAL_SIZE=5;
 
     private Object[] array;
     private int nextValid;
@@ -32,6 +32,10 @@ public class ArrayList <T> implements List <T> {
         array=newArray;
     }
 
+    public int getListLength(){
+        return array.length;
+    }
+
     public void delete(int index){
         if(index<0 || index>=nextValid){
             return;
@@ -43,7 +47,7 @@ public class ArrayList <T> implements List <T> {
     }
 
     public void insert(int index, T data){
-        if(index<0 || index>=nextValid){
+        if(index<0 || index>nextValid){
             return;
         }
 
@@ -51,9 +55,7 @@ public class ArrayList <T> implements List <T> {
             increaseArrayCapacity();
         }
 
-        for(int i=nextValid;i>index;i--){
-            array[i]=array[i-1];
-        }
+        if (nextValid - index >= 0) System.arraycopy(array, index, array, index + 1, nextValid - index);
         array[index]=data;
         nextValid++;
     }
@@ -74,58 +76,5 @@ public class ArrayList <T> implements List <T> {
         return new ArrayListIterator<>(this);
     }
 
-/*
-    public void add(T data){
-        int i;
 
-        if(last==size){
-            arrCounter++;
-            int newArr[]=new int[size*arrCounter];
-            for(i=0;i<last;i++){
-                newArr[i]=arr[i];
-            }
-            arr=newArr;
-        }
-        arr[last]=data;
-        last++;
-    }
-
-    public void insert(int data, int index){
-        int i;
-
-        if(last==size){
-            arrCounter++;
-            int newArr[]=new int[size*arrCounter];
-            for(i=0;i<last;i++){
-                newArr[i]=arr[i];
-            }
-        }
-
-        for(i=last;i>=index;i--){
-            arr[i+1]=arr[i];
-        }
-        arr[index]=data;
-        last++;
-    }
-
-    public void delete(int index){
-        int i;
-
-        for(i=index;i<last;i++){
-            arr[i]=arr[i+1];
-        }
-        last--;
-    }
-
-    public int getSize(){
-        return last;
-    }
-
-    public int getAt(int index){
-        return arr[index];
-    }
-
-    public int getArrCounter() {
-        return arrCounter;
-    }*/
 }
